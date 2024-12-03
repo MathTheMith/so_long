@@ -74,7 +74,7 @@ int main(void)
             }
 			if (map[row][col] == 'C')
             {
-                print_images(mlx, win,"./images/walls.xpm", col * img_width, row * img_height, img_width, img_height);
+                print_images(mlx, win,"./images/item.xpm", col * img_width, row * img_height, img_width, img_height);
             }
 			if (map[row][col] == 'E')
             {
