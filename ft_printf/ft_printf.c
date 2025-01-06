@@ -6,7 +6,7 @@
 /*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:58:58 by mvachon           #+#    #+#             */
-/*   Updated: 2024/11/19 16:04:56 by math             ###   ########lyon.fr   */
+/*   Updated: 2024/12/11 12:01:07 by math             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int ft_printf(const char *conv, ...)
     int len = 0;
 
     va_start(args, conv);
+    if (!conv)
+        return(-1);
     while (conv[i])
     {
         if (conv[i] == '%' && conv[i + 1])
