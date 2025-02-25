@@ -35,7 +35,7 @@ typedef struct s_game {
     int anim_timer;
 } t_game;
 
-
+char **duplicate_map(char **map, int height);
 void free_map(char **map);
 char **read_map(const char *filename);
 int close_window(void *param);
