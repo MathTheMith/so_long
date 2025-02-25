@@ -12,14 +12,14 @@
 
 #include "so_long.h"
 
-int	print_images(void *mlx, void *win, char *link_img, int x, int y, int img_width, int img_height)
+int	print_images(void *mlx, void *win, char *link_img, int x, int y)
 {
 	void	*img;
 	int		width;
 	int		height;
 
-	width = img_width;
-	height = img_height;
+	width = 98;
+	height = 98;
 	img = mlx_xpm_file_to_image(mlx, link_img, &width, &height);
 	if (!img)
 	{

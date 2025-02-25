@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:18:54 by math              #+#    #+#             */
-/*   Updated: 2024/12/13 11:50:12 by math             ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 00:58:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int render_static_map(t_game *game, void *win)
         {
             if (game->map[row][col] == '1')
             {
-                if (!print_images(game->mlx, win, "./images/walls.xpm", col * 98, row * 98, 98, 98))
+                if (!print_images(game->mlx, win, "./images/walls.xpm", col * 98, row * 98))
                 {
                     printf("Failed to render wall at row %d, col %d\n", row, col);
                     return (0);
@@ -48,13 +48,13 @@ int render_game(t_game *game, void *win)
         while (game->map[row][col])
         {
             if (game->map[row][col] == '0')
-                print_images(game->mlx, win, "./images/background.xpm", col * 98, row * 98, 98, 98);
+                print_images(game->mlx, win, "./images/background.xpm", col * 98, row * 98);
             else if (game->map[row][col] == 'C')
-                print_images(game->mlx, win, "./images/items.xpm", col * 98, row * 98, 98, 98);
+                print_images(game->mlx, win, "./images/items.xpm", col * 98, row * 98);
             else if (game->map[row][col] == 'E')
-                print_images(game->mlx, win, "./images/exit.xpm", col * 98, row * 98, 98, 98);
+                print_images(game->mlx, win, "./images/exit.xpm", col * 98, row * 98);
             else if (game->map[row][col] == 'M')
-                print_images(game->mlx, win, "./images/monster.xpm", col * 98, row * 98, 98, 98);
+                print_images(game->mlx, win, "./images/monster.xpm", col * 98, row * 98);
             col++;
         }
         row++;

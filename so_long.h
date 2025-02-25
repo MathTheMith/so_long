@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/02/26 00:50:49 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 00:57:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int validate_game_map(char **map, int game_width, int game_height);
 int setup_game_rendering(t_game *game);
 
 // render_utils.c
-int print_images(void *mlx, void *win, char *link_img, int x, int y, int img_width, int img_height);
+int print_images(void *mlx, void *win, char *link_img, int x, int y);
 void render_jump_animation(t_game *game, void *jump_sprite);
 void render_jump(t_game *game, int left_right);
 void handle_jump_animation(t_game *game, int keycode);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:57:29 by math              #+#    #+#             */
-/*   Updated: 2024/12/12 23:06:27 by math             ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 00:58:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ void render_player(t_game *game, void *win)
         player_img = "./images/player_right.xpm";
     
     print_images(game->mlx, win, player_img, 
-                game->player_x * 98, game->player_y * 98, 98, 98);
+                game->player_x * 98, game->player_y * 98);
 }
