@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/02/26 00:57:41 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 01:54:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,10 @@ void render_player(t_game *game, void *win);
 int render_static_map(t_game *game, void *win);
 void render_steps_with_background(void *mlx, void *win, int steps);
 void animate_player(t_game *game, void *win, int start_x, int start_y, int end_x, int end_y);
+int initialize_map(char ***map, int *width, int *height);
+int setup_game(t_game *game, void *mlx, char **map, int width, int height);
+void cleanup(t_game *game);
+
+
 
 #endif

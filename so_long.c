@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:11:19 by math              #+#    #+#             */
-/*   Updated: 2025/02/26 01:44:32 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 01:54:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int close_window(void *param)
     return (0);
 }
 
-
 void initialize_game(t_game *game, void *mlx, char **map, int game_width, int game_height)
 {
     int     final_width;
@@ -64,45 +63,6 @@ void initialize_game(t_game *game, void *mlx, char **map, int game_width, int ga
     }
 }
 
-
-int validate_game_map(char **map, int game_width, int game_height)
-{
-    if (!validate_path(map, game_width, game_height))
-    {
-        ft_printf("%s", "Error\nNo valid path in the map\n");
-        return (0);
-    }
-    if (!check_borders(map))
-    {
-        ft_printf("%s", "Error\nThe walls aren't working properly\n");
-        return (0);
-    }
-    if (!check_objects(map))
-    {
-        ft_printf("%s", "Error\nThere are not the right number of objects\n");
-        return (0);
-    }
-    return (1);
-}
-
-int setup_game_rendering(t_game *game)
-{
-    if (!render_static_map(game, game->win))
-    {
-        ft_printf("%s", "Error\nThe walls weren't rendered properly");
-        return (0);
-    }
-    if (!render_game(game, game->win))
-    {
-        ft_printf("%s", "Error\nThe map is too small\n");
-        return (0);
-    }
-    if (!mlx_key_hook(game->win, handle_keypress, game))
-        return (0);
-    mlx_hook(game->win, 17, 0, close_window, game);
-    return (1);
-}
-
 int main(void)
 {
     void *mlx;
@@ -117,27 +77,13 @@ int main(void)
         ft_printf("Error\nmlx_init() failed\n");
         return (1);
     }
-    map = read_map("carte.ber");
-    if (!map)
-    {
-        ft_printf("Error\nThe map isn't working properly\n");
+    
+    if (!initialize_map(&map, &game_width, &game_height))
         return (1);
-    }
-    game_width = ft_strlen(map[0]);
-    game_height = 0;
-    while (map[game_height])
-        game_height++;
-    initialize_game(&game, mlx, map, game_width, game_height);
-    if (!validate_game_map(map, game_width, game_height))
-    {
-        cleanup(&game);
+    
+    if (!setup_game(&game, mlx, map, game_width, game_height))
         return (1);
-    }
-    if (!setup_game_rendering(&game))
-    {
-        cleanup(&game);
-        return (1);
-    }
+    
     mlx_loop(mlx);
     return (0);
 }
