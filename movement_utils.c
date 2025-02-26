@@ -35,7 +35,7 @@ int check_game_end(t_game *game, int new_x, int new_y, int player_step)
 
     if (game->map[new_y][new_x] == 'E' && !check_objects(game->map))
     {
-        printf("Bien joué ! Tu as fini en %d moves\n", player_step);
+        printf("Well played !! You finished in %d moves\n", player_step);
         close_window(game);
         return (1);
     }

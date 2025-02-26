@@ -23,8 +23,7 @@ int	print_images(void *mlx, void *win, char *link_img, int x, int y)
 	img = mlx_xpm_file_to_image(mlx, link_img, &width, &height);
 	if (!img)
 	{
-		printf("ERROR: Image failed to load. Path: %s\n", link_img);
-		perror("Image load error");
+		printf("Error\nImage failed to load. Path: %s\n", link_img);
 		return (0);
 	}
 	mlx_put_image_to_window(mlx, win, img, x, y);
@@ -65,7 +64,7 @@ void render_jump(t_game *game, int left_right)
 
     if (!jump_sprite)
     {
-        printf("Error: Failed to load jump sprite\n");
+        printf("Error\nFailed to load jump sprite\n");
         return;
     }
 

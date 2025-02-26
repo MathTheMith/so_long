@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:18:54 by math              #+#    #+#             */
-/*   Updated: 2025/02/26 00:58:13 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 01:03:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int render_static_map(t_game *game, void *win)
             {
                 if (!print_images(game->mlx, win, "./images/walls.xpm", col * 98, row * 98))
                 {
-                    printf("Failed to render wall at row %d, col %d\n", row, col);
+                    printf("Error\nFailed to render wall at row %d, col %d\n", row, col);
                     return (0);
                 }
             }
@@ -81,7 +81,6 @@ void render_steps_with_background(void *mlx, void *win, int steps)
 		data[i] = 0x000000;
 		i++;
 	}
-
 	mlx_put_image_to_window(mlx, win, bg_image, 25, 25);
 	mlx_string_put(mlx, win, 40, 40, 0xFFFFFF, step_count);
 	mlx_destroy_image(mlx, bg_image);
