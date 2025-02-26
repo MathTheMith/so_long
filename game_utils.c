@@ -14,11 +14,6 @@
 
 int validate_game_map(char **map, int game_width, int game_height)
 {
-    if (!validate_path(map, game_width, game_height))
-    {
-        ft_printf("%s", "Error\nNo valid path in the map\n");
-        return (0);
-    }
     if (!check_borders(map))
     {
         ft_printf("%s", "Error\nThe walls aren't working properly\n");
@@ -27,6 +22,11 @@ int validate_game_map(char **map, int game_width, int game_height)
     if (!check_objects(map))
     {
         ft_printf("%s", "Error\nThere are not the right number of objects\n");
+        return (0);
+    }
+    if (!validate_path(map, game_width, game_height))
+    {
+        ft_printf("%s", "Error\nNo valid path in the map\n");
         return (0);
     }
     return (1);

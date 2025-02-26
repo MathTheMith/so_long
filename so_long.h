@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/02/26 01:54:27 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 04:10:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ typedef struct s_game {
     int anim_state;
     int anim_timer;
 } t_game;
+
+typedef struct s_object_count
+{
+    int     count_e;
+    int     count_p;
+    int     count_c;
+}   t_object_count;
+
+/* Fonctions existantes */
+int check_borders(char **map);
+
+/* Nouvelles fonctions */
+void count_objects(char **map, t_object_count *count);
+int check_objects(char **map);
 
 // so_long.c
 int close_window(void *param);

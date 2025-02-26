@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:11:19 by math              #+#    #+#             */
-/*   Updated: 2025/02/26 01:54:20 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 03:25:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void initialize_game(t_game *game, void *mlx, char **map, int game_width, int ga
     game->width = game_width;
     game->height = game_height;
     game->last_direction = 1;
-    game->win = mlx_new_window(mlx, final_width - 98, final_height, "So_long");
+    game->win = mlx_new_window(mlx, final_width, final_height, "So_long");
     if (!game->win)
     {
         ft_printf("Error\nmlx_new_window() failed\n");
@@ -70,7 +70,6 @@ int main(void)
     int game_width;
     int game_height;
     t_game game;
-    
     mlx = mlx_init();
     if (!mlx)
     {
@@ -80,10 +79,13 @@ int main(void)
     
     if (!initialize_map(&map, &game_width, &game_height))
         return (1);
-    
+    if (game_width <= 2 && game_height <= 2)
+    {
+        ft_printf("Error\nthe map is too small");
+        return (1);
+    }
     if (!setup_game(&game, mlx, map, game_width, game_height))
         return (1);
-    
     mlx_loop(mlx);
     return (0);
 }
