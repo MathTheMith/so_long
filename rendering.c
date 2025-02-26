@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:18:54 by math              #+#    #+#             */
-/*   Updated: 2025/02/26 01:03:05 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:48:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,31 @@ int render_static_map(t_game *game, void *win)
     }
     return (1);
 }
-
+int check_valid_characters(char **map, int height)
+{
+    int x;
+    int y;
+    
+    y = 0;
+    while (y < height)
+    {
+        x = 0;
+        while (map[y][x] != '\0')
+        {
+            if (map[y][x] != '0' && map[y][x] != '1' && 
+                map[y][x] != 'P' && map[y][x] != 'C' && 
+                map[y][x] != 'E' && map[y][x] != 'M' &&
+                map[y][x] != '\n')
+            {
+                printf("Error\nInvalid character found\n");
+                return (0);
+            }
+            x++;
+        }
+        y++;
+    }
+    return (1);
+}
 int render_game(t_game *game, void *win)
 {
     int row = 0;

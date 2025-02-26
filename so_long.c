@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:11:19 by math              #+#    #+#             */
-/*   Updated: 2025/02/26 03:25:27 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 14:16:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void cleanup(t_game *game)
 {
     if (game)
     {
-        if (game->win && game->mlx)
-            mlx_destroy_window(game->mlx, game->win);
+    	if (game->win && game->mlx)
+        	mlx_destroy_window(game->mlx, game->win);
         if (game->map)
             free_map(game->map);
         if (game->mlx)

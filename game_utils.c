@@ -24,6 +24,8 @@ int validate_game_map(char **map, int game_width, int game_height)
         ft_printf("%s", "Error\nThere are not the right number of objects\n");
         return (0);
     }
+    if (!check_valid_characters(map, game_height))
+        return(0);
     if (!validate_path(map, game_width, game_height))
     {
         ft_printf("%s", "Error\nNo valid path in the map\n");
