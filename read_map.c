@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/15 15:29:46 by mvachon           #+#    #+#             */
+/*   Updated: 2025/03/15 15:31:03 by mvachon          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	free_map(char **map)
@@ -15,7 +27,7 @@ void	free_map(char **map)
 	free(map);
 }
 
-int handle_file_error(int fd, char **map)
+int	handle_file_error(int fd, char **map)
 {
 	if (fd < 0)
 	{
@@ -31,11 +43,12 @@ int handle_file_error(int fd, char **map)
 	return (0);
 }
 
-char **expand_map(char **map, int i, int *map_size, int fd)
+char	**expand_map(char **map, int i, int *map_size, int fd)
 {
-	char **new_map;
-	int j = 0;
-	
+	char	**new_map;
+	int		j;
+
+	j = 0;
 	*map_size *= 2;
 	new_map = malloc(sizeof(char *) * *map_size);
 	if (!new_map)
@@ -54,13 +67,18 @@ char **expand_map(char **map, int i, int *map_size, int fd)
 	return (new_map);
 }
 
-char **read_map(const char *filename)
+char	**read_map(const char *filename)
 {
-	int fd = open(filename, O_RDONLY);
-	char *line;
-	char **map = malloc(sizeof(char *) * 10);
-	int i = 0, map_size = 10;
-	
+	int		fd;
+	char	*line;
+	char	**map;
+	int		i;
+	int		map_size;
+
+	i = 0;
+	map_size = 10;
+	fd = open(filename, O_RDONLY);
+	map = malloc(sizeof(char *) * 10);
 	if (handle_file_error(fd, map))
 		return (NULL);
 	while ((line = get_next_line(fd)))
