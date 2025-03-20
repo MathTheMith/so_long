@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:29:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/03/15 15:31:03 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/03/20 14:46:09 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	**read_map(const char *filename)
 	map_size = 10;
 	fd = open(filename, O_RDONLY);
 	map = malloc(sizeof(char *) * 10);
+	// map = NULL; //pas gere
 	if (handle_file_error(fd, map))
 		return (NULL);
 	while ((line = get_next_line(fd)))

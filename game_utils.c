@@ -54,7 +54,7 @@ int	setup_game_rendering(t_game *game)
 
 int	initialize_map(char ***map, int *width, int *height)
 {
-	*map = read_map("carte.ber");
+	*map = read_map("carte.ber"); //av[1]
 	if (!*map)
 	{
 		ft_printf("Error\nThe map isn't working properly\n");
