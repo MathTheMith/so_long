@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/10 07:23:57 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 01:14:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	handle_jump_animation(t_game *game, int keycode);
 int		render_static_map(t_game *game);
 int		check_valid_characters(t_game *game);
 int		render_game(t_game *game);
-void	render_steps_with_background(void *mlx, void *win, int steps);
 void	cleanup(t_game *game);
 int		close_window(void *param);
 void	initialize_game(t_game *game);

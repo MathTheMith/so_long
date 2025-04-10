@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/03/20 14:44:32 by mvachon          ###   ########lyon.fr    #
+#    Updated: 2025/04/11 01:35:48 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,23 +40,36 @@ OBJ     = $(SRC:%.c=$(DIR_OBJ)%.o)
 CC      = gcc
 AR      = ar rcs
 
+# Couleurs
+GREEN	= \033[0;32m
+BLUE	= \033[0;34m
+YELLOW	= \033[1;33m
+RED		= \033[0;31m
+NC		= \033[0m
+
 all: $(NAME)
+	@echo "$(GREEN)✅ Compilation terminée !$(NC)"
 
 $(NAME): $(MLX_LIB) $(OBJ)
+	@echo "$(BLUE)🔧 Linking...$(NC)"
 	@$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $@
 
 $(MLX_LIB):
+	@echo "$(BLUE)📦 Compilation de la minilibx...$(NC)"
 	@$(MAKE) -C $(MLX_DIR)
 
 $(DIR_OBJ)%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
+	@echo "$(BLUE)🛠️  Compilation de $<$(NC)"
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
+	@echo "$(RED)🧹 Suppression des fichiers objets...$(NC)"
 	@rm -rf $(DIR_OBJ)
 	@$(MAKE) clean -C $(MLX_DIR)
 
 fclean: clean
+	@echo "$(RED)🗑️ Suppression de l'exécutable...$(NC)"
 	@rm -f $(NAME)
 	@$(MAKE) fclean -C $(MLX_DIR)
 

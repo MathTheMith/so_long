@@ -20,7 +20,7 @@ void	handle_movement(t_game *game, int *player_step)
 	game->player_y = game->new_y;
 	(*player_step)++;
 	render_game(game);
-	render_steps_with_background(game->mlx, game->win, *player_step);
+	ft_printf("Steps: %d\n", *player_step);
 }
 
 int	check_game_end(t_game *game, int player_step)

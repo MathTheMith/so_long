@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:18:54 by math              #+#    #+#             */
-/*   Updated: 2025/04/10 06:19:12 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 01:14:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,27 +91,4 @@ int	render_game(t_game *game)
 	}
 	render_player(game);
 	return (1);
-}
-
-void	render_steps_with_background(void *mlx, void *win, int steps)
-{
-	t_render	render;
-	char		step_count[50];
-	int			i;
-
-	render.rect_width = 150;
-	render.rect_height = 50;
-	render.bg_image = mlx_new_image(mlx, render.rect_width, render.rect_height);
-	render.data = (int *)mlx_get_data_addr(render.bg_image, &(int){0},
-			&(int){0}, &(int){0});
-	sprintf(step_count, "Steps: %d", steps);
-	i = 0;
-	while (i < render.rect_width * render.rect_height)
-	{
-		render.data[i] = 0x000000;
-		i++;
-	}
-	mlx_put_image_to_window(mlx, win, render.bg_image, 25, 25);
-	mlx_string_put(mlx, win, 40, 40, 0xFFFFFF, step_count);
-	mlx_destroy_image(mlx, render.bg_image);
 }
