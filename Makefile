@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 01:35:48 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/11 01:41:58 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ AR      = ar rcs
 # Couleurs
 GREEN	= \033[0;32m
 BLUE	= \033[0;34m
-YELLOW	= \033[1;33m
+GRAY	= \033[1;30m
 RED		= \033[0;31m
 NC		= \033[0m
 
@@ -60,7 +60,7 @@ $(MLX_LIB):
 
 $(DIR_OBJ)%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
-	@echo "$(BLUE)🛠️  Compilation de $<$(NC)"
+	@echo "$(GRAY)🛠️  Compilation de $<$(NC)"
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
