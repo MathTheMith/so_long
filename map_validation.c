@@ -12,22 +12,22 @@
 
 #include "so_long.h"
 
-void	flood_fill(char **map, int x, int y, int *collectibles, int *exit_found)
+void	flood_fill(char **map, int x, int y, t_game *game)
 {
-	if (map[y][x] == '1' || map[y][x] == 'F' || map[y][x] == 'M')
+	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
 	if (map[y][x] == 'C')
-		(*collectibles)--;
+		(game->collectibles)--;
 	if (map[y][x] == 'E')
-		*exit_found = 1;
+		game->exit = 1;
 	map[y][x] = 'F';
-	flood_fill(map, x + 1, y, collectibles, exit_found);
-	flood_fill(map, x - 1, y, collectibles, exit_found);
-	flood_fill(map, x, y + 1, collectibles, exit_found);
-	flood_fill(map, x, y - 1, collectibles, exit_found);
+	flood_fill(map, x + 1, y, game);
+	flood_fill(map, x - 1, y, game);
+	flood_fill(map, x, y + 1, game);
+	flood_fill(map, x, y - 1, game);
 }
 
-int	count_collectibles(char **map, int width, int height)
+int	count_collectibles(t_game *game)
 {
 	int	x;
 	int	y;
@@ -35,12 +35,12 @@ int	count_collectibles(char **map, int width, int height)
 
 	collectibles = 0;
 	y = 0;
-	while (y < height)
+	while (y < game->height)
 	{
 		x = 0;
-		while (x < width)
+		while (x < game->width)
 		{
-			if (map[y][x] == 'C')
+			if (game->map[y][x] == 'C')
 				collectibles++;
 			x++;
 		}
@@ -49,36 +49,13 @@ int	count_collectibles(char **map, int width, int height)
 	return (collectibles);
 }
 
-void	find_player_position(char **map, int width, int height, int *player_x, int *player_y)
+void	replace_exit_with_wall(char **map, t_game *game)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-		{
-			if (map[y][x] == 'P')
-			{
-				*player_x = x;
-				*player_y = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-void	replace_exit_with_wall(char **map, int height)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < height)
+	while (y < game->height)
 	{
 		x = 0;
 		while (map[y][x] != '\0')
@@ -91,59 +68,35 @@ void	replace_exit_with_wall(char **map, int height)
 	}
 }
 
-int	check_collectibles_without_exit(char **map, int width, int height)
+int	validate_path(t_game *game)
 {
-	int		collectibles;
-	int		dummy_exit_found;
-	int		player_x;
-	int		player_y;
 	char	**map_copy;
 
-	dummy_exit_found = 0;
-	map_copy = duplicate_map(map, height);
+	if (!check_collectibles_without_exit(game))
+		return (0);
+	game->collectibles = count_collectibles(game);
+	game->exit = 0;
+	map_copy = duplicate_map(game);
 	if (!map_copy)
 		return (0);
-	replace_exit_with_wall(map_copy, height);
-	collectibles = count_collectibles(map, width, height);
-	find_player_position(map, width, height, &player_x, &player_y);
-	flood_fill(map_copy, player_x, player_y, &collectibles, &dummy_exit_found);
+	find_player_position(game);
+	flood_fill(map_copy, game->player_x, game->player_y, game);
 	free_map(map_copy);
-	return (collectibles == 0);
+	return (game->collectibles == 0 && game->exit);
 }
 
-int	validate_path(char **map, int width, int height)
-{
-	int		collectibles;
-	int		exit_found;
-	int		player_x;
-	int		player_y;
-	char	**map_copy;
-
-	if (!check_collectibles_without_exit(map, width, height))
-		return (0);
-	collectibles = count_collectibles(map, width, height);
-	exit_found = 0;
-	map_copy = duplicate_map(map, height);
-	if (!map_copy)
-		return (0);
-	find_player_position(map, width, height, &player_x, &player_y);
-	flood_fill(map_copy, player_x, player_y, &collectibles, &exit_found);
-	free_map(map_copy);
-	return (collectibles == 0 && exit_found);
-}
-
-char	**duplicate_map(char **map, int height)
+char	**duplicate_map(t_game *game)
 {
 	int		i;
 	char	**copy;
 
-	copy = malloc(sizeof(char *) * (height + 1));
+	copy = malloc(sizeof(char *) * (game->height + 1));
 	if (!copy)
 		return (NULL);
 	i = 0;
-	while (i < height)
+	while (i < game->height)
 	{
-		copy[i] = strdup(map[i]);
+		copy[i] = strdup(game->map[i]);
 		if (!copy[i])
 		{
 			while (--i >= 0)
@@ -153,6 +106,6 @@ char	**duplicate_map(char **map, int height)
 		}
 		i++;
 	}
-	copy[height] = NULL;
+	copy[game->height] = NULL;
 	return (copy);
 }

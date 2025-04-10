@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:46:05 by math              #+#    #+#             */
-/*   Updated: 2024/12/06 18:09:28 by math             ###   ########lyon.fr   */
+/*   Updated: 2025/04/10 07:14:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = malloc(1);
+		if (!s1)
+			return (NULL);
 		s1[0] = '\0';
 	}
 	if (!s2)

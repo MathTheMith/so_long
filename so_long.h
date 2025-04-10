@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/03/15 15:47:16 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/10 07:16:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct s_game
 	int		last_direction;
 	int		anim_state;
 	int		anim_timer;
+	int		collectibles;
+	int		exit;
+	int		new_x;
+	int		new_y;
 }	t_game;
 
 typedef struct s_object_count
@@ -49,41 +53,49 @@ typedef struct s_object_count
 	int	count_c;
 }	t_object_count;
 
-int		check_borders(char **map);
-void	count_objects(char **map, t_object_count *count);
-int		check_objects(char **map);
-int		check_valid_characters(char **map, int height);
+typedef struct s_render
+{
+	void	*bg_image;
+	int		*data;
+	int		rect_width;
+	int		rect_height;
+}	t_render;
+
+void	count_objects(t_game *game, t_object_count *count);
+int		check_valid_characters(t_game *game);
 int		close_window(void *param);
-void	initialize_game(t_game *game, void *mlx, char **map, int game_width, int game_height);
-int		validate_game_map(char **map, int game_width, int game_height);
+void	initialize_game(t_game *game);
+int		initialize_map(t_game *game, char **av);
 int		setup_game_rendering(t_game *game);
-int		print_images(void *mlx, void *win, char *link_img, int x, int y);
+int		print_images(t_game *game, char *link_img, int x, int y);
 void	render_jump_animation(t_game *game, void *jump_sprite);
 void	render_jump(t_game *game, int left_right);
 void	handle_jump_animation(t_game *game, int keycode);
-void	flood_fill(char **map, int x, int y, int *collectibles, int *exit_found);
-int		count_collectibles(char **map, int width, int height);
-void	find_player_position(char **map, int width, int height, int *player_x, int *player_y);
-int		validate_path(char **map, int width, int height);
-char	**duplicate_map(char **map, int height);
-void	handle_movement(t_game *game, int new_x, int new_y, int *player_step);
-int		check_game_end(t_game *game, int new_x, int new_y, int player_step);
-void	process_key_direction(int keycode, t_game *game, int *new_x, int *new_y);
+void	flood_fill(char **map, int x, int y, t_game *game);
+int		count_collectibles(t_game *game);
+void	find_player_position(t_game *game);
+int		validate_path(t_game *game);
+int		validate_path(t_game *game);
+void	handle_movement(t_game *game, int *player_step);
+int		check_game_end(t_game *game, int player_step);
+void	process_key_direction(int keycode, t_game *game);
 int		is_movement_key(int keycode);
-int		is_valid_move(t_game *game, int new_x, int new_y);
-int		process_movement(t_game *game, int keycode, int new_x, int new_y, int *player_step);
+int		is_valid_move(t_game *game);
+int		process_movement(t_game *game, int keycode, int *player_step);
 int		handle_keypress(int keycode, void *param);
 void	free_map(char **map);
 char	**read_map(const char *filename);
-int		check_borders(char **map);
-int		check_objects(char **map);
-void	move_monster(t_game *game, void *param);
-int		render_game(t_game *game, void *win);
-void	render_player(t_game *game, void *win);
-int		render_static_map(t_game *game, void *win);
+int		check_borders(t_game *game);
+int		check_objects(t_game *game);
+int		render_game(t_game *game);
+void	render_player(t_game *game);
+int		render_static_map(t_game *game);
 void	render_steps_with_background(void *mlx, void *win, int steps);
-int		initialize_map(char ***map, int *width, int *height);
-int		setup_game(t_game *game, void *mlx, char **map, int width, int height);
+int		setup_game(t_game *game);
 void	cleanup(t_game *game);
+char	**duplicate_map(t_game *game);
+int		handle_file_error(int fd, char **map);
+int		check_collectibles_without_exit(t_game *game);
+void	replace_exit_with_wall(char **map, t_game *game);
 
 #endif

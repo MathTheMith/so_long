@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:59:09 by math              #+#    #+#             */
-/*   Updated: 2024/12/11 11:26:36 by math             ###   ########lyon.fr   */
+/*   Updated: 2025/04/10 07:14:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ char	*get_next_line(int fd)
 	storage = update_storage(storage);
 	return (line);
 }
-

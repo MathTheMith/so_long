@@ -12,23 +12,23 @@
 
 #include "so_long.h"
 
-int	validate_game_map(char **map, int game_width, int game_height)
+int	validate_game_map(t_game *game)
 {
-	if (!check_borders(map))
+	if (!check_borders(game))
 	{
 		ft_printf("%s", "Error\nThe walls aren't working properly\n");
 		return (0);
 	}
-	if (!check_objects(map))
+	if (!check_objects(game))
 	{
 		ft_printf("%s", "Error\nThere are not the right number of objects\n");
 		return (0);
 	}
-	if (!check_valid_characters(map, game_height))
+	if (!check_valid_characters(game))
 		return (0);
-	if (!validate_path(map, game_width, game_height))
+	if (!validate_path(game))
 	{
-		ft_printf("%s", "Error\nNo valid path in the map\n");
+		ft_printf("%s", "Error\nNo valid path in the game->map\n");
 		return (0);
 	}
 	return (1);
@@ -36,12 +36,12 @@ int	validate_game_map(char **map, int game_width, int game_height)
 
 int	setup_game_rendering(t_game *game)
 {
-	if (!render_static_map(game, game->win))
+	if (!render_static_map(game))
 	{
 		ft_printf("%s", "Error\nThe walls weren't rendered properly");
 		return (0);
 	}
-	if (!render_game(game, game->win))
+	if (!render_game(game))
 	{
 		ft_printf("%s", "Error\nThe map is too small\n");
 		return (0);
@@ -52,25 +52,25 @@ int	setup_game_rendering(t_game *game)
 	return (1);
 }
 
-int	initialize_map(char ***map, int *width, int *height)
+int	initialize_map(t_game *game, char **av)
 {
-	*map = read_map("carte.ber"); //av[1]
-	if (!*map)
+	game->map = read_map(av[1]);
+	if (!game->map)
 	{
-		ft_printf("Error\nThe map isn't working properly\n");
+		ft_printf("Error\nThis map doesnt exist\n");
 		return (0);
 	}
-	*width = ft_strlen((*map)[0]);
-	*height = 0;
-	while ((*map)[*height])
-		(*height)++;
+	game->width = ft_strlen((game->map)[0]);
+	game->height = 0;
+	while ((game->map)[game->height])
+		(game->height)++;
 	return (1);
 }
 
-int	setup_game(t_game *game, void *mlx, char **map, int width, int height)
+int	setup_game(t_game *game)
 {
-	initialize_game(game, mlx, map, width, height);
-	if (!validate_game_map(map, width, height))
+	initialize_game(game);
+	if (!validate_game_map(game))
 	{
 		cleanup(game);
 		return (0);

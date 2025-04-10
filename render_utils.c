@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	print_images(void *mlx, void *win, char *link_img, int x, int y)
+int	print_images(t_game *game, char *link_img, int x, int y)
 {
 	void	*img;
 	int		width;
@@ -20,14 +20,14 @@ int	print_images(void *mlx, void *win, char *link_img, int x, int y)
 
 	width = 98;
 	height = 98;
-	img = mlx_xpm_file_to_image(mlx, link_img, &width, &height);
+	img = mlx_xpm_file_to_image(game->mlx, link_img, &width, &height);
 	if (!img)
 	{
 		printf("Error\nImage failed to load. Path: %s\n", link_img);
 		return (0);
 	}
-	mlx_put_image_to_window(mlx, win, img, x, y);
-	mlx_destroy_image(mlx, img);
+	mlx_put_image_to_window(game->mlx, game->win, img, x, y);
+	mlx_destroy_image(game->mlx, img);
 	return (1);
 }
 
