@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 01:41:58 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/11 02:59:11 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC     =   so_long.c \
 			move_players.c \
 			get_next_line/get_next_line_utils.c \
 			get_next_line/get_next_line.c \
+			get_next_line/utils.c \
 			ft_printf/ft_printf.c \
             ft_printf/ext_functions.c \
 

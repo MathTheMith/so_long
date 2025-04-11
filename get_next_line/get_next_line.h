@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:46:03 by math              #+#    #+#             */
-/*   Updated: 2024/12/06 18:00:51 by math             ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 02:58:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*free_ptr(void **ptr);
+int ft_strcmp(const char *s1, const char *s2);
+void ft_memset(void *b, int c, size_t len);
+
 
 #endif

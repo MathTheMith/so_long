@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:11:19 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 01:14:20 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 02:56:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	cleanup(t_game *game)
 		if (game->win && game->mlx)
 			mlx_destroy_window(game->mlx, game->win);
 		if (game->map)
+		{
 			free_map(game->map);
+			game->map = NULL;
+		}
 		if (game->mlx)
 		{
 			mlx_destroy_display(game->mlx);
@@ -65,27 +68,30 @@ void	initialize_game(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	game;
-
+	
+    ft_memset(&game, 0, sizeof(t_game));
 	if (ac != 2)
 	{
 		ft_printf("Error\nUsage: %s <map_file>\n", av[0]);
 		return (1);
 	}
+	if (!check_ber_extension(av[1]))
+    {
+        ft_printf("Error\nBad extension");
+        return (1);
+    }
+	if (!initialize_map(&game, av))
+		return (1);
 	game.mlx = mlx_init();
 	if (!game.mlx)
-	{
-		ft_printf("Error\nmlx_init() failed\n");
-		return (1);
-	}
-	if (!initialize_map(&game, av))
-	{
-		return (1);
-	}
+    {
+        ft_printf("Error\nmlx_init() failed\n");
+        free_map(game.map);
+        return (1);
+    }
 	if (!setup_game(&game))
-	{
-		free_map(game.map);
 		return (1);
-	}
 	mlx_loop(game.mlx);
+	cleanup(&game);
 	return (0);
 }
