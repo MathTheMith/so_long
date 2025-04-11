@@ -6,7 +6,7 @@
 #    By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 16:01:33 by mvachon          ###   ########lyon.fr    #
+#    Updated: 2025/04/11 19:19:05 by mvachon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ $(DIR_OBJ)/%.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 
-$(DIR_OBJ)/bonus_/%.o: $(BONUS_DIR)/%.c $(HEADER)
+$(DIR_OBJ)/bonus_/%.o: $(BONUS_DIR)/%.c $(BONUS_HEADER)
 	@mkdir -p $(dir $@)
 	@echo "$(GRAY)🛠️  Compilation de $< (bonus)$(NC)"
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@

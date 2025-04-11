@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 18:23:40 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 19:20:14 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 # define SO_LONG_BONUS_H
 
 # include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include "../get_next_line/get_next_line.h" 
 # include "../ft_printf/ft_printf.h"
 # include <mlx.h>
-# include <string.h>
-# include <stdio.h>
 
 # define KEY_W 119
 # define KEY_A 97

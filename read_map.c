@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:29:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 18:54:21 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 19:22:44 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	handle_file_error(int fd, char **map)
 {
 	if (fd < 0)
 	{
-		ft_printf("%s", "Error\n Impossible to open the file\n");
+		ft_printf("Error\n Impossible to open the file");
 		return (1);
 	}
 	if (!map)
 	{
-		ft_printf("%s", "Error\nThere is no map");
+		ft_printf("Error\nThere is no map");
 		close(fd);
 		return (1);
 	}
@@ -38,7 +38,7 @@ char	**expand_map(char **map, int i, int *map_size, int fd)
 	new_map = malloc(sizeof(char *) * (*map_size + 1));
 	if (!new_map)
 	{
-		ft_printf("%s", "Error\nAllocation didn't work\n");
+		ft_printf("Error\nAllocation didn't work\n");
 		free_map(map);
 		close(fd);
 		return (NULL);

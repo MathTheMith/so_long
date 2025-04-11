@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 18:23:11 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 19:22:01 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 # define SO_LONG_H
 
 # include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include "get_next_line/get_next_line.h" 
 # include "ft_printf/ft_printf.h"
 # include <mlx.h>
-# include <string.h>
-# include <stdio.h>
+
 
 # define KEY_W 119
 # define KEY_A 97
@@ -52,14 +49,6 @@ typedef struct s_object_count
 	int	count_p;
 	int	count_c;
 }	t_object_count;
-
-typedef struct s_render
-{
-	void	*bg_image;
-	int		*data;
-	int		rect_width;
-	int		rect_height;
-}	t_render;
 
 int		check_borders(t_game *game);
 void	count_objects(t_game *game, t_object_count *count);
