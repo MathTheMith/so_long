@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:46:05 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 14:50:41 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 15:19:15 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -57,7 +57,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (s1);
 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
-		return (free(s1), NULL);
+		return (free (s1), NULL);
 	i = -1;
 	j = 0;
 	while (s1[++i])

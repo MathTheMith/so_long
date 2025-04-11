@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_functions.c                                  :+:      :+:    :+:   */
+/*   check_functions_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:07:00 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 18:29:17 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 18:30:44 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	check_middle_lines(t_game *game, int row, int col)
 {

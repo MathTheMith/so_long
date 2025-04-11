@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	process_movement(t_game *game, int keycode, int *player_step)
 {
@@ -19,6 +19,7 @@ int	process_movement(t_game *game, int keycode, int *player_step)
 	if (check_game_end(game,*player_step))
 		return (0);
 	render_player(game);
+	handle_jump_animation(game, keycode);
 	handle_movement(game, player_step);
 	return (1);
 }

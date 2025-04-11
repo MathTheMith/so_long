@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	handle_movement(t_game *game, int *player_step)
 {
@@ -20,6 +20,7 @@ void	handle_movement(t_game *game, int *player_step)
 	game->player_y = game->new_y;
 	(*player_step)++;
 	render_game(game);
+	render_steps_with_background(game,*player_step);
 	ft_printf("Steps: %d\n", *player_step);
 }
 

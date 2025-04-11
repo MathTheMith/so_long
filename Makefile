@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 06:55:41 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/11 16:01:33 by mvachon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC     =   so_long.c \
 			ft_printf/ft_printf.c \
             ft_printf/ext_functions.c \
 
-BONUS_DIR = bonus_
+BONUS_DIR = bonus
 BONUS_SRC =	$(BONUS_DIR)/so_long_bonus.c \
 			  $(BONUS_DIR)/map_validation_bonus.c \
 			  $(BONUS_DIR)/render_utils_bonus.c \
@@ -58,7 +58,7 @@ BONUS_SRC =	$(BONUS_DIR)/so_long_bonus.c \
 
 DIR_OBJ = obj
 OBJ     = $(SRC:%.c=$(DIR_OBJ)/%.o)
-BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(DIR_OBJ)/bonus/%.o)
+BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(DIR_OBJ)/bonus_/%.o)
 
 CC      = gcc
 AR      = ar rcs
@@ -74,11 +74,14 @@ all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(OBJ)
 	@echo "$(BLUE)🔧 Linking...$(NC)"
-	@$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $@
 
-bonus: $(MLX_LIB) $(BONUS_OBJ)
+$(NAME_BONUS): $(MLX_LIB) $(BONUS_OBJ)
 	@echo "$(BLUE)🔧 Linking (bonus)...$(NC)"
-	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(MLX_FLAGS) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(BONUS_OBJ) $(MLX_FLAGS) -o $@
+
+bonus: $(NAME_BONUS)
+	@echo "$(GREEN)✅ Bonus compilation terminée !$(NC)"
 
 $(MLX_LIB):
 	@echo "$(BLUE)📦 Compilation de la minilibx...$(NC)"
@@ -90,7 +93,7 @@ $(DIR_OBJ)/%.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 
-$(DIR_OBJ)/bonus/%.o: $(BONUS_DIR)/%.c $(HEADER)
+$(DIR_OBJ)/bonus_/%.o: $(BONUS_DIR)/%.c $(HEADER)
 	@mkdir -p $(dir $@)
 	@echo "$(GRAY)🛠️  Compilation de $< (bonus)$(NC)"
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
@@ -103,7 +106,7 @@ clean:
 fclean: clean
 	@echo "$(RED)🗑️ Suppression de l'exécutable...$(NC)"
 	@rm -f $(NAME)
-	@rm -f $(NAME_BONUS)
+	@rm -f $(NAME_BONUS)	
 	@$(MAKE) fclean -C $(MLX_DIR)
 
 re: fclean all

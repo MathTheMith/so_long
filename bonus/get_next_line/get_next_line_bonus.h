@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:46:03 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 17:42:54 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 06:56:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -29,6 +29,5 @@ char	*free_ptr(void **ptr);
 int		ft_strcmp(const char *s1, const char *s2);
 void	ft_memset(void *b, int c, size_t len);
 char	*ft_strrchr(const char *s, int c);
-char	*ft_strdup(const char *s);
 
 #endif
