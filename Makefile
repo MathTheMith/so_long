@@ -6,13 +6,16 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 06:31:05 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/11 06:55:41 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    =   so_long
+NAME_BONUS = so_long_bonus
+
 HEADER    = so_long.h
 BONUS_HEADER = bonus/so_long_bonus.h 
+
 CFLAGS  =   -Wall -Wextra -Werror
 
 MLX_DIR = minilibx-linux
@@ -20,7 +23,6 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_INC = -I$(MLX_DIR)
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
 
-# Fichiers sources principaux
 SRC     =   so_long.c \
 			render_utils.c \
 			game_utils.c \
@@ -37,7 +39,6 @@ SRC     =   so_long.c \
 			ft_printf/ft_printf.c \
             ft_printf/ext_functions.c \
 
-# Fichiers sources bonus
 BONUS_DIR = bonus_
 BONUS_SRC =	$(BONUS_DIR)/so_long_bonus.c \
 			  $(BONUS_DIR)/map_validation_bonus.c \
@@ -62,7 +63,6 @@ BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(DIR_OBJ)/bonus/%.o)
 CC      = gcc
 AR      = ar rcs
 
-# Couleurs
 GREEN	= \033[0;32m
 BLUE	= \033[0;34m
 GRAY	= \033[1;30m
@@ -78,7 +78,7 @@ $(NAME): $(MLX_LIB) $(OBJ)
 
 bonus: $(MLX_LIB) $(BONUS_OBJ)
 	@echo "$(BLUE)🔧 Linking (bonus)...$(NC)"
-	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(MLX_FLAGS) -o $@
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(MLX_FLAGS) -o $(NAME_BONUS)
 
 $(MLX_LIB):
 	@echo "$(BLUE)📦 Compilation de la minilibx...$(NC)"
@@ -103,7 +103,7 @@ clean:
 fclean: clean
 	@echo "$(RED)🗑️ Suppression de l'exécutable...$(NC)"
 	@rm -f $(NAME)
-	@rm -f bonus
+	@rm -f $(NAME_BONUS)
 	@$(MAKE) fclean -C $(MLX_DIR)
 
 re: fclean all
