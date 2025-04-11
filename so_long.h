@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 19:22:01 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 19:26:55 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "get_next_line/get_next_line.h" 
 # include "ft_printf/ft_printf.h"
 # include <mlx.h>
-
 
 # define KEY_W 119
 # define KEY_A 97
