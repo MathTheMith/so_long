@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:29:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 19:22:44 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/11 23:57:50 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	open_map_file(const char *filename, int *fd, char ***map, int *map_size)
 		return (0);
 	}
 	*map_size = 10;
-	*map = malloc(sizeof(char *) * (*map_size));
+	*map = malloc(sizeof(char *) * (*map_size + 1));
 	if (!*map)
 		return (0);
 	return (1);

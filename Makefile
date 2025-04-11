@@ -6,7 +6,7 @@
 #    By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 19:19:05 by mvachon          ###   ########lyon.fr    #
+#    Updated: 2025/04/11 23:57:01 by mvachon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,6 @@ fclean: clean
 	@echo "$(RED)🗑️ Suppression de l'exécutable...$(NC)"
 	@rm -f $(NAME)
 	@rm -f $(NAME_BONUS)	
-	@$(MAKE) fclean -C $(MLX_DIR)
 
 re: fclean all
 
