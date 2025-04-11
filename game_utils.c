@@ -52,42 +52,44 @@ int	setup_game_rendering(t_game *game)
 	return (1);
 }
 
-int initialize_map(t_game *game, char **av)
+int	initialize_map(t_game *game, char **av)
 {
-    if (!check_ber_extension(av[1]))
-    {
-        ft_printf("Error\nBad extension\n");
-        return (0);
-    }
-
-    game->map = read_map(av[1]);
-    if (!game->map)
-    {
-        ft_printf("Error\nThis map doesnt exist\n");
-        return (0);
-    }
-    
-    game->width = ft_strlen((game->map)[0]);
-    game->height = 0;
-    while ((game->map)[game->height])
-        (game->height)++;
-    
-    return (1);
+	if (!check_ber_extension(av[1]))
+	{
+		ft_printf("Error\nBad extension\n");
+		return (0);
+	}
+	game->map = read_map(av[1]);
+	if (!game->map)
+	{
+		ft_printf("Error\nThis map doesnt exist\n");
+		return (0);
+	}
+	game->width = ft_strlen((game->map)[0]);
+	game->height = 0;
+	while ((game->map)[game->height])
+		(game->height)++;
+	return (1);
 }
-int check_ber_extension(const char *filename)
+
+int	check_ber_extension(const char *filename)
 {
-    size_t len;
-    
-    if (!filename)
-        return (0);
-    if (filename[0] == '.')
-        return (0);
-    len = ft_strlen(filename);
-    if (len < 5)
-        return (0);
-    if (ft_strcmp(filename + len - 4, ".ber") != 0)
-        return (0);
-    return (1);
+	size_t		len;
+	const char	*last_slash;
+
+	if (!filename)
+		return (0);
+	last_slash = ft_strrchr(filename, '/');
+	if (!last_slash)
+		last_slash = filename;
+	if (last_slash[1] == '.')
+		return (0);
+	len = ft_strlen(filename);
+	if (len < 5)
+		return (0);
+	if (ft_strcmp(last_slash + ft_strlen(last_slash) - 4, ".ber") != 0)
+		return (0);
+	return (1);
 }
 
 int	setup_game(t_game *game)

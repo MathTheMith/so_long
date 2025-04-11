@@ -86,3 +86,18 @@ void	handle_jump_animation(t_game *game, int keycode)
 	else if (keycode == KEY_D)
 		render_jump(game, 0);
 }
+
+void	free_map(char **map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free (map);
+}

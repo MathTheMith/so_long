@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 02:58:34 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 03:53:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		render_static_map(t_game *game);
 int		check_valid_characters(t_game *game);
 int		render_game(t_game *game);
 void	cleanup(t_game *game);
-int check_ber_extension(const char *filename);
+int		check_ber_extension(const char *filename);
 int		close_window(void *param);
 void	initialize_game(t_game *game);
 

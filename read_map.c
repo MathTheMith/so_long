@@ -6,26 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:29:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/10 07:07:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 04:06:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(char **map)
-{
-	int	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free (map);
-}
 
 int	handle_file_error(int fd, char **map)
 {
@@ -69,13 +54,32 @@ char	**expand_map(char **map, int i, int *map_size, int fd)
 
 int	open_map_file(const char *filename, int *fd, char ***map, int *map_size)
 {
-	*fd = open(filename, O_RDONLY);
+	*fd = open(filename, O_RDWR);
 	if (*fd < 0)
+	{
+		printf("Error\nAcces denied");
 		return (0);
+	}
 	*map_size = 10;
 	*map = malloc(sizeof(char *) * (*map_size));
 	if (!*map)
 		return (0);
+	return (1);
+}
+
+int	read_first_line(int fd, char **map, int *i)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	if (!line)
+	{
+		free(map);
+		close(fd);
+		return (0);
+	}
+	map[*i] = line;
+	(*i)++;
 	return (1);
 }
 
@@ -88,7 +92,8 @@ char	**read_map(const char *filename)
 	int		map_size;
 
 	i = 0;
-	if (!open_map_file(filename, &fd, &map, &map_size))
+	if (!open_map_file(filename, &fd, &map, &map_size)
+		|| !read_first_line(fd, map, &i))
 		return (NULL);
 	while (1)
 	{
@@ -104,6 +109,5 @@ char	**read_map(const char *filename)
 		map[i++] = line;
 	}
 	map[i] = NULL;
-	close(fd);
-	return (map);
+	return (close(fd), map);
 }
