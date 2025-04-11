@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:06:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 05:33:47 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/11 06:41:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "get_next_line/get_next_line.h" 
-# include "ft_printf/ft_printf.h"
+# include "../get_next_line/get_next_line.h" 
+# include "../ft_printf/ft_printf.h"
 # include <mlx.h>
 # include <string.h>
 # include <stdio.h>
@@ -53,13 +53,11 @@ typedef struct s_object_count
 	int	count_c;
 }	t_object_count;
 
-typedef struct s_render
+typedef struct s_positon
 {
-	void	*bg_image;
-	int		*data;
 	int		rect_width;
 	int		rect_height;
-}	t_render;
+}	t_position;
 
 int		check_borders(t_game *game);
 void	count_objects(t_game *game, t_object_count *count);
@@ -91,6 +89,7 @@ int		open_map_file(const char *filename, int *fd,
 			char ***map, int *map_size);
 char	**read_map(const char *filename);
 int		print_images(t_game *game, char *link_img, int x, int y);
+void	render_jump_animation(t_game *game, void *jump_sprite);
 void	render_jump(t_game *game, int left_right);
 void	handle_jump_animation(t_game *game, int keycode);
 int		render_static_map(t_game *game);
@@ -100,5 +99,6 @@ void	cleanup(t_game *game);
 int		check_ber_extension(const char *filename);
 int		close_window(void *param);
 void	initialize_game(t_game *game);
+void	render_steps_with_background(t_game *game, int steps);
 
 #endif

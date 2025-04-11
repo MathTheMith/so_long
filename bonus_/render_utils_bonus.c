@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils.c                                     :+:      :+:    :+:   */
+/*   render_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: math <math@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 22:55:02 by math              #+#    #+#             */
-/*   Updated: 2024/12/12 22:55:02 by math             ###   ########lyon.fr   */
+/*   Created: 2025/04/11 05:30:11 by marvin            #+#    #+#             */
+/*   Updated: 2025/04/11 05:30:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	print_images(t_game *game, char *link_img, int x, int y)
 {
@@ -29,6 +29,21 @@ int	print_images(t_game *game, char *link_img, int x, int y)
 	mlx_put_image_to_window(game->mlx, game->win, img, x, y);
 	mlx_destroy_image(game->mlx, img);
 	return (1);
+}
+
+void	render_jump_animation(t_game *game, void *jump_sprite)
+{
+	int	i;
+
+	i = 0;
+	while (i < 10)
+	{
+		mlx_put_image_to_window(game->mlx, game->win, jump_sprite,
+			game->player_x * 98, game->player_y * 98);
+		mlx_do_sync(game->mlx);
+		usleep(7000);
+		i++;
+	}
 }
 
 void	render_jump(t_game *game, int left_right)
@@ -51,6 +66,7 @@ void	render_jump(t_game *game, int left_right)
 		printf("Error\nFailed to load jump sprite\n");
 		return ;
 	}
+	render_jump_animation(game, jump_sprite);
 	mlx_destroy_image(game->mlx, jump_sprite);
 }
 

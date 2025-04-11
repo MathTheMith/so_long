@@ -6,12 +6,13 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 07:28:08 by math              #+#    #+#              #
-#    Updated: 2025/04/11 02:59:11 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/11 06:31:05 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    =   so_long
-HEADER  =   so_long.h
+HEADER    = so_long.h
+BONUS_HEADER = bonus/so_long_bonus.h 
 CFLAGS  =   -Wall -Wextra -Werror
 
 MLX_DIR = minilibx-linux
@@ -19,6 +20,7 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_INC = -I$(MLX_DIR)
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
 
+# Fichiers sources principaux
 SRC     =   so_long.c \
 			render_utils.c \
 			game_utils.c \
@@ -35,8 +37,27 @@ SRC     =   so_long.c \
 			ft_printf/ft_printf.c \
             ft_printf/ext_functions.c \
 
-DIR_OBJ = obj/
-OBJ     = $(SRC:%.c=$(DIR_OBJ)%.o)
+# Fichiers sources bonus
+BONUS_DIR = bonus_
+BONUS_SRC =	$(BONUS_DIR)/so_long_bonus.c \
+			  $(BONUS_DIR)/map_validation_bonus.c \
+			  $(BONUS_DIR)/render_utils_bonus.c \
+              $(BONUS_DIR)/game_utils_bonus.c \
+              $(BONUS_DIR)/movement_utils_bonus.c \
+              $(BONUS_DIR)/movement_handlers_bonus.c \
+              $(BONUS_DIR)/read_map_bonus.c \
+              $(BONUS_DIR)/check_functions_bonus.c \
+              $(BONUS_DIR)/rendering_bonus.c \
+              $(BONUS_DIR)/move_players_bonus.c \
+              $(BONUS_DIR)/get_next_line/get_next_line_utils_bonus.c \
+              $(BONUS_DIR)/get_next_line/get_next_line_bonus.c \
+              $(BONUS_DIR)/get_next_line/utils_bonus.c \
+              $(BONUS_DIR)/ft_printf/ft_printf_bonus.c \
+              $(BONUS_DIR)/ft_printf/ext_functions_bonus.c \
+
+DIR_OBJ = obj
+OBJ     = $(SRC:%.c=$(DIR_OBJ)/%.o)
+BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(DIR_OBJ)/bonus/%.o)
 
 CC      = gcc
 AR      = ar rcs
@@ -55,13 +76,23 @@ $(NAME): $(MLX_LIB) $(OBJ)
 	@echo "$(BLUE)🔧 Linking...$(NC)"
 	@$(CC) $(CFLAGS) $(OBJ) $(MLX_FLAGS) -o $@
 
+bonus: $(MLX_LIB) $(BONUS_OBJ)
+	@echo "$(BLUE)🔧 Linking (bonus)...$(NC)"
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) $(MLX_FLAGS) -o $@
+
 $(MLX_LIB):
 	@echo "$(BLUE)📦 Compilation de la minilibx...$(NC)"
 	@$(MAKE) -C $(MLX_DIR)
 
-$(DIR_OBJ)%.o: %.c $(HEADER)
+$(DIR_OBJ)/%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
 	@echo "$(GRAY)🛠️  Compilation de $<$(NC)"
+	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
+
+
+$(DIR_OBJ)/bonus/%.o: $(BONUS_DIR)/%.c $(HEADER)
+	@mkdir -p $(dir $@)
+	@echo "$(GRAY)🛠️  Compilation de $< (bonus)$(NC)"
 	@$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
 
 clean:
@@ -72,8 +103,9 @@ clean:
 fclean: clean
 	@echo "$(RED)🗑️ Suppression de l'exécutable...$(NC)"
 	@rm -f $(NAME)
+	@rm -f bonus
 	@$(MAKE) fclean -C $(MLX_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
