@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_players_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:57:29 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 18:39:14 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/12 19:35:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	render_steps_with_background(t_game *game, int steps)
 	bg_image = mlx_new_image(game->mlx, pos.rect_width, pos.rect_height);
 	if (!bg_image)
 	{
-		ft_printf("Error\nNo background image");
+		ft_printf("Error\nNo background image\n");
 		cleanup(game);
 		exit(1);
 	}

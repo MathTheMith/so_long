@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:29:46 by mvachon           #+#    #+#             */
-/*   Updated: 2025/04/11 18:37:50 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/12 19:41:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	handle_file_error(int fd, char **map)
 	}
 	if (!map)
 	{
-		ft_printf("%s", "Error\nThere is no map");
+		ft_printf("%s", "Error\nThere is no map\n");
 		close(fd);
 		return (1);
 	}
@@ -57,11 +57,11 @@ int	open_map_file(const char *filename, int *fd, char ***map, int *map_size)
 	*fd = open(filename, O_RDWR);
 	if (*fd < 0)
 	{
-		ft_printf("Error\nAcces denied");
+		ft_printf("Error\nAcces denied\n");
 		return (0);
 	}
 	*map_size = 10;
-	*map = malloc(sizeof(char *) * (*map_size));
+	*map = malloc(sizeof(char *) * (*map_size + 1));
 	if (!*map)
 		return (0);
 	return (1);

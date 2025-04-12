@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:11:19 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 17:59:46 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/12 19:36:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	initialize_game(t_game *game)
 
 	if (game->width < 3 || game->height < 3)
 	{
-		ft_printf("Error\nThe map is too small");
+		ft_printf("Error\nThe map is too small\n");
 		cleanup(game);
 		exit(1);
 	}
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (!check_ber_extension(av[1]))
-		return (ft_printf("Error\nBad extension"), 1);
+		return (ft_printf("Error\nBad extension\n"), 1);
 	if (!initialize_map(&game, av))
 		return (1);
 	game.mlx = mlx_init();
