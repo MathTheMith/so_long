@@ -6,7 +6,7 @@
 /*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 09:18:54 by math              #+#    #+#             */
-/*   Updated: 2025/04/11 17:58:38 by mvachon          ###   ########lyon.fr   */
+/*   Updated: 2025/04/14 08:15:33 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	render_game(t_game *game)
 	int	col;
 
 	row = 0;
+	render_player(game);
 	while (game->map[row])
 	{
 		col = 0;
@@ -89,6 +90,5 @@ int	render_game(t_game *game)
 		}
 		row++;
 	}
-	render_player(game);
 	return (1);
 }

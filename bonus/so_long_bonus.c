@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mvachon <mvachon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:11:19 by math              #+#    #+#             */
-/*   Updated: 2025/04/12 19:36:08 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/14 08:27:23 by mvachon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,15 @@ void	initialize_game(t_game *game)
 	int	final_width;
 	int	final_height;
 
-	if (game->width < 3 || game->height < 3)
+	final_width = game->width * 98;
+	final_height = game->height * 98;
+	if (game->width < 3 || game->height < 3
+		|| final_height > 2160 || final_width > 3840)
 	{
-		ft_printf("Error\nThe map is too small\n");
+		ft_printf("Error\nThe map is too small/big\n");
 		cleanup(game);
 		exit(1);
 	}
-	final_width = game->width * 98;
-	final_height = game->height * 98;
 	game->width = game->width;
 	game->height = game->height;
 	game->last_direction = 1;

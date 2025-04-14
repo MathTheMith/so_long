@@ -16,19 +16,19 @@ int	validate_game_map(t_game *game)
 {
 	if (!check_borders(game))
 	{
-		ft_printf("%s", "Error\nThe walls aren't working properly\n");
+		ft_printf("Error\nThe walls aren't working properly\n");
 		return (0);
 	}
 	if (!check_objects(game))
 	{
-		ft_printf("%s", "Error\nThere are not the right number of objects\n");
+		ft_printf("Error\nThere are not the right number of objects\n");
 		return (0);
 	}
 	if (!check_valid_characters(game))
 		return (0);
 	if (!validate_path(game))
 	{
-		ft_printf("%s", "Error\nNo valid path in the game->map\n");
+		ft_printf("Error\nNo valid path in the game->map\n");
 		return (0);
 	}
 	return (1);
@@ -38,12 +38,12 @@ int	setup_game_rendering(t_game *game)
 {
 	if (!render_static_map(game))
 	{
-		ft_printf("%s", "Error\nThe walls weren't rendered properly\n");
+		ft_printf("Error\nThe walls weren't rendered properly\n");
 		return (0);
 	}
 	if (!render_game(game))
 	{
-		ft_printf("%s", "Error\nThe map is too small\n");
+		ft_printf("Error\nThe map is too small\n");
 		return (0);
 	}
 	if (!mlx_key_hook(game->win, handle_keypress, game))
